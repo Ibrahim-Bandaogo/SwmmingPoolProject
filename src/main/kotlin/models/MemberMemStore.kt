@@ -25,9 +25,13 @@ class MemberMemStore: MemberStore {
     }
 
     override fun create(member: MemberModel) {
-        member.id = getId()
-        members.add(member)
-        logAll()
+        var max = 10
+        // limit members numbers to add
+        if(members.size < max){
+            member.id = getId()
+            members.add(member)
+            logAll()
+        }
     }
 
     override fun update(member: MemberModel) {
