@@ -16,13 +16,10 @@ class MemberMemStore: MemberStore {
         return members
     }
 
-    override fun finOne(id: Int): MemberModel? {
+    override fun findOne(id: Int): MemberModel? {
         return members.find { m -> m.id == id }
     }
-
-    override fun findOne(id: Int) : MemberModel?{
-        return members.find { m -> m.id == id }
-    }
+    
 
     override fun create(member: MemberModel) {
         var max = 10
