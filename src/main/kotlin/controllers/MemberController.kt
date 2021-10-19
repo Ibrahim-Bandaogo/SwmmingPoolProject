@@ -5,6 +5,10 @@ import models.MemberModel
 import mu.KotlinLogging
 import views.MemberViews
 
+/******************************
+*@author Ibrahim Bandaogo
+*
+********************************/
 
 class MemberController {
     private val members = MemberMemStore()
@@ -12,10 +16,11 @@ class MemberController {
     private val logger = KotlinLogging.logger {}
 
     init {
-        logger.info {"Launching Park Swimming Pool APP Console"}
+        logger.info {"Launching Grattan Swimming Pool APP Console"}
         println(" Swimming Pool App Version 3.0")
     }
 
+    // Function called to start the program
     fun start(){
         var input : Int
 
@@ -36,10 +41,12 @@ class MemberController {
         logger.info("Shutting Swimming Pool Console App")
     }
 
+    //Function to displays menu
     private fun menu() : Int {
         return memberView.menu()
     }
 
+    // Function to add member
     private fun add(){
         val aMember = MemberModel()
 
@@ -48,7 +55,7 @@ class MemberController {
             logger.info("Member Added Successfully")
         }
         else
-            logger.info("Members Not Added, Please check that you have filled all fields")
+            logger.info("Members Not Added, Please check all fields and try again")
     }
     private fun list(){
         memberView.listMembers(members)
@@ -95,7 +102,7 @@ class MemberController {
 
 // Dummy data
     private fun dummyData(){
-    members.create(MemberModel(100,"John Smith","Waterford","Student membership","08111111","Male"))
+    members.create(MemberModel(1,"John Smith","Waterford","Student membership","08111111","Male"))
 
 }
 }

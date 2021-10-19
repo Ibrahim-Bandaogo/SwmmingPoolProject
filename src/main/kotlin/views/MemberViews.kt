@@ -7,12 +7,12 @@ import java.util.regex.Pattern
 
 
 class MemberViews {
-
+    // Menu function
     fun menu(): Int {
         var option: Int
         var input: String?
 
-        println("Park Swimming Pool MAIN MENU")
+        println("Grattan Swimming Pool MAIN MENU")
         println(" 1. Add Member")
         println(" 2. Update Member Details")
         println(" 3. List All Members")
@@ -30,6 +30,7 @@ class MemberViews {
         return option
     }
 
+    // Function that displays members list
     fun listMembers(members: MemberMemStore) {
         println("Members List")
         println()
@@ -37,13 +38,7 @@ class MemberViews {
         println()
     }
 
-    fun listMembers(members: MemberJSONStore) {
-        println("Members List")
-        println()
-        members.logAll()
-        println()
-    }
-
+    // Adding member function
     fun addMemberData(member: MemberModel): Boolean {
         println()
         print("Enter full name : ")
@@ -52,7 +47,7 @@ class MemberViews {
         member.gender = readLine()!!
         print("Enter your Address: ")
         member.address = readLine()!!
-        print("Membership Types : ")
+        print("Membership Types (Single/Couple/Student): ")
         member.membershipTypes = readLine()!!
         print("Enter Your Email: ")
         member.memberEmail = readLine()!!
@@ -64,11 +59,12 @@ class MemberViews {
                 member.memberEmail.isEmailValid()
                 //member.EmergencyContact.isEmailValid()
     }
-
+    // Function to display member detail
     fun showMember(member: MemberModel) {
         println("Member Details [$member]")
     }
 
+    // Function that enables to update member details
     fun updateMemberData(member: MemberModel): Boolean {
         var tempFullName: String?
         var tempGender: String?
@@ -76,7 +72,6 @@ class MemberViews {
         var tempMembershipTypes: String?
         var tempMemberEmail: String?
         //var tempEmergencyContact: String?
-
 
         print("Enter a new full name for [ " + member.fullName + " ] : ")
         tempFullName = readLine()!!
@@ -101,6 +96,7 @@ class MemberViews {
         return false
     }
 
+    // Function used for searching, deleting using get an id
     fun getId(): Int {
         var strId: String?     // string to hold user input
         var searchId: Int     // Long to hold converted id
@@ -113,7 +109,7 @@ class MemberViews {
         return searchId
     }
 
-    // function used to validate the email pattern. if not valid member wont be added
+    // function used to validate the email pattern. if not valid member can't be added
     fun String.isEmailValid(): Boolean {
         val expression = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,8}$"
         val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)

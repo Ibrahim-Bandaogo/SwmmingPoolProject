@@ -3,34 +3,36 @@ package models
 import mu.KotlinLogging
 
 private val logger = KotlinLogging.logger {  }
-var lastId = 500
+var lastId = 0
 
 internal fun getId(): Int {
     return lastId++
 }
 
 class MemberMemStore: MemberStore {
+    var maxMembers = 2 // limit members numbers to add
     private val members = ArrayList<MemberModel>()
 
     override fun findAll() : List<MemberModel>{
         return members
     }
 
+    // Override findOne abstract function
     override fun findOne(id: Int): MemberModel? {
         return members.find { m -> m.id == id }
     }
-    
 
+    // Override create abstract function
     override fun create(member: MemberModel) {
-        var max = 10
-        // limit members numbers to add
-        if(members.size < max){
+        // Added member should not be over Max
+        if(members.size < maxMembers){
             member.id = getId()
             members.add(member)
             logAll()
         }
     }
 
+    // Override update abstract function
     override fun update(member: MemberModel) {
         val foundMember = findOne(member.id)
         if(foundMember != null){
@@ -43,7 +45,7 @@ class MemberMemStore: MemberStore {
         }
     }
 
-    // overrides the delete abstract function and implement the class function
+    // overrides delete abstract function
     override fun delete(member: MemberModel) {
         val foundMember = findOne(member.id)
         if(foundMember != null){

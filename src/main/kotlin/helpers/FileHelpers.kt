@@ -5,7 +5,7 @@ import java.io.*
 
 val logger = KotlinLogging.logger {  }
 
-// Json file function to write
+// Write to Json file function
 fun write( fileName: String, data: String) {
     val file = File(fileName)
 
@@ -17,7 +17,8 @@ fun write( fileName: String, data: String) {
         logger.error { "Cannot read file: $e" }
     }
 }
-// Json file function to read
+
+// Read Json file function
     fun read(fileName: String): String{
         val file = File(fileName)
         var str = ""

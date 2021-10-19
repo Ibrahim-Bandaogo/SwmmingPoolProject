@@ -11,8 +11,6 @@ import helpers.read
 import helpers.exists
 
 
-
-
     private val logger = KotlinLogging.logger { }
 
     const val JSON_FILE = "members.json"
@@ -24,7 +22,7 @@ import helpers.exists
 }
 
 
-abstract class MemberJSONStore : MemberStore {
+class MemberJSONStore : MemberStore {
     private var members = mutableListOf<MemberModel>()
 
     init {
@@ -32,24 +30,24 @@ abstract class MemberJSONStore : MemberStore {
             deserialize()
         }
     }
-    // overrides the findAll abstract function and implement the class function
+    // override findAll abstract function.
     override fun findAll(): MutableList<MemberModel> {
         return members
     }
 
-    // overrides the findOne abstract function and implement the class function
+    // override findOne abstract function.
     override fun findOne(id: Int): MemberModel? {
         return members.find { m -> m.id == id }
     }
 
-    // overrides the create abstract function and implement the class function
+    // override create abstract function.
     override fun create(member: MemberModel) {
         member.id = generateRandomId()
         members.add(member)
         serialize()
     }
 
-    // overrides the update abstract function and implement the class function
+    // override update abstract function.
     override fun update(member: MemberModel) {
         val foundMember = findOne(member.id)
         if(foundMember != null){
@@ -62,7 +60,7 @@ abstract class MemberJSONStore : MemberStore {
         serialize()
     }
 
-    // overrides the delete abstract function and implement the class function
+    // override delete abstract function.
     override fun delete(member: MemberModel) {
         val foundMember = findOne(member.id)
         if(foundMember != null){
@@ -71,18 +69,18 @@ abstract class MemberJSONStore : MemberStore {
         serialize()
     }
 
-    // function to display all the members
+    // function that display all members
     internal fun logAll(){
         members.forEach { logger.info("$it")}
     }
 
-    // function to convert the member type to json format and persist
+    // function that convert member type to json format.
     private fun serialize(){
         val jsonString = gsonBuilder.toJson(members, listType)
         write(JSON_FILE, jsonString)
     }
 
-    // function to convert from json format to member type the persisted datta
+    // function that convert json format to member type.
     private fun deserialize(){
         val jsonString = read(JSON_FILE)
         members = Gson().fromJson(jsonString, listType)
