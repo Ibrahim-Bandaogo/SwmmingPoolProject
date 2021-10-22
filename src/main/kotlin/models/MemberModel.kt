@@ -7,6 +7,6 @@ data class MemberModel(
     var gender: String = "",
     var address: String = "",
     var memberEmail: String = "",
-    var membershipTypes: String = ""
-    //var emergencyContact: String = ""
+    var membershipTypes: String = "",
+    var emergencyContact: String = ""
     )

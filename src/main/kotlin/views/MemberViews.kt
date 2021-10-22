@@ -1,6 +1,5 @@
 package views
 
-import models.MemberJSONStore
 import models.MemberMemStore
 import models.MemberModel
 import java.util.regex.Pattern
@@ -51,13 +50,13 @@ class MemberViews {
         member.membershipTypes = readLine()!!
         print("Enter Your Email: ")
         member.memberEmail = readLine()!!
-        //print("Enter Emergency Contact Number: ")
-        //member.EmergencyContact = readLine()!!
+        print("Enter Emergency Contact Number: ")
+        member.emergencyContact = readLine()!!
         return member.fullName.isNotEmpty() &&
                 member.address.isNotEmpty() &&
                 member.membershipTypes.isNotEmpty() &&
-                member.memberEmail.isEmailValid()
-                //member.EmergencyContact.isEmailValid()
+                member.memberEmail.isEmailValid() &&
+                member.emergencyContact.isNotEmpty()
     }
     // Function to display member detail
     fun showMember(member: MemberModel) {
@@ -71,7 +70,7 @@ class MemberViews {
         var tempAddress: String?
         var tempMembershipTypes: String?
         var tempMemberEmail: String?
-        //var tempEmergencyContact: String?
+        var tempEmergencyContact: String?
 
         print("Enter a new full name for [ " + member.fullName + " ] : ")
         tempFullName = readLine()!!
@@ -83,13 +82,15 @@ class MemberViews {
         tempMembershipTypes = readLine()!!
         print("Enter a new member email for [ " + member.memberEmail + " ] : ")
         tempMemberEmail = readLine()!!
-
-        if (!tempFullName.isNullOrEmpty() && !tempMemberEmail.isNullOrEmpty()) {
+        println("Enter a new member Emergency Contact for [ " + member.emergencyContact + " ] : ")
+        tempEmergencyContact = readLine()!!
+        if (!tempFullName.isNullOrEmpty() && !tempMemberEmail.isNullOrEmpty() && !tempEmergencyContact.isNullOrEmpty()) {
             member.fullName = tempFullName
             member.gender = tempGender
             member.address = tempAddress
             member.membershipTypes = tempMembershipTypes
             member.memberEmail = tempMemberEmail
+            member.emergencyContact = tempEmergencyContact
 
             return true
         }

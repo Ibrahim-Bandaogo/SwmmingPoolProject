@@ -56,6 +56,7 @@ class MemberJSONStore : MemberStore {
             foundMember.membershipTypes = member.membershipTypes
             foundMember.memberEmail = member.memberEmail
             foundMember.gender = member.gender
+            foundMember.emergencyContact = member.emergencyContact
         }
         serialize()
     }

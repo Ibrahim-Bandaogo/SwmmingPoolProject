@@ -1,5 +1,6 @@
 package controllers
 
+import models.MemberJSONStore
 import models.MemberMemStore
 import models.MemberModel
 import mu.KotlinLogging
@@ -103,7 +104,7 @@ class MemberController {
 
 // Dummy data
     private fun dummyData(){
-    members.create(MemberModel(1,"John Smith","Waterford","Student membership","08111111","Male"))
+    members.create(MemberModel(1,"John Smith","Waterford","Student membership","08111111","Male", "081111111"))
 
 }
 }

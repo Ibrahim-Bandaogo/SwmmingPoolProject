@@ -6,7 +6,7 @@ class MainScreen {
         var option: Int
         var input: String?
 
-        println("Welcome to Grattan Swimming Pool MAIN MENU")
+        println("Welcome to Grattan Swimming Pool MAIN MENU\n")
         println("Press ok to continue")
 
         input = readLine()!!

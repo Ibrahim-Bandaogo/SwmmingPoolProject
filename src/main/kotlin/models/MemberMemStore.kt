@@ -41,7 +41,7 @@ class MemberMemStore: MemberStore {
             foundMember.address = member.address
             foundMember.membershipTypes = member.membershipTypes
             foundMember.memberEmail = member.memberEmail
-            //foundMember.emergencyContact = member.emergencyContact
+            foundMember.emergencyContact = member.emergencyContact
         }
     }
 
